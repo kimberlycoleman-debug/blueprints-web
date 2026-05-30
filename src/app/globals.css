@@ -1,3 +1,12 @@
+:root {
+  --bp-bg: #fdfcff;
+  --bp-accent: #6c5ce7;
+  --bp-accent-2: #00cec9;
+  --bp-accent-3: #fdcb6e;
+  --bp-text: #2d3436;
+  --bp-text-muted: #636e72;
+}
+
 *,
 *::before,
 *::after {
