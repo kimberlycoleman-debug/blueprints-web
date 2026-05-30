@@ -2,25 +2,34 @@ import "@/styles/blueprints.css";
 
 export default function BlueprintsLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-[var(--bp-bg)]">
-      <header className="w-full border-b border-black/5 bg-white">
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <img src="/blueprints-icon.png" alt="Blueprints Icon" className="h-8 w-8" />
-            <span className="font-semibold text-[var(--bp-text)] tracking-tight">
-              Blueprints Foundation App
-            </span>
-          </div>
+    <div className="min-h-screen" style={{ background: "radial-gradient(circle at top, #0f172a 0, #0b1120 55%, #000 100%)" }}>
+
+      {/* Banner */}
+      <header className="w-full" style={{ borderBottom: "1px solid var(--bp-border)", background: "var(--bp-surface)" }}>
+        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center gap-3">
+          <img src="/blueprints-banner.png" alt="Blueprints Banner" className="h-10 object-contain" />
+          <span className="font-semibold tracking-tight" style={{ color: "var(--bp-text)" }}>
+            Blueprints Foundation App
+          </span>
         </div>
       </header>
 
+      {/* Main Content */}
       <main className="max-w-5xl mx-auto px-6 py-10">{children}</main>
 
-      <footer className="w-full border-t border-black/5 bg-white py-4">
-        <div className="max-w-5xl mx-auto px-6 text-sm text-[var(--bp-text-muted)]">
-          © {new Date().getFullYear()} Solavian — Blueprints Foundation App
+      {/* Outro */}
+      <footer className="w-full" style={{ borderTop: "1px solid var(--bp-border)", background: "var(--bp-surface)" }}>
+        <div className="max-w-5xl mx-auto px-6 py-8 text-center">
+          <img src="/blueprints-outro.png" alt="Blueprints Outro" className="mx-auto mb-4 w-48 object-contain" />
+          <p className="text-sm mb-1" style={{ color: "var(--bp-text-muted)" }}>
+            Matthew 28:19–20 · Formation · Governance · Witness
+          </p>
+          <p className="text-sm" style={{ color: "var(--bp-text-muted)" }}>
+            © {new Date().getFullYear()} Solavian — Blueprints Foundation App
+          </p>
         </div>
       </footer>
+
     </div>
   );
 }

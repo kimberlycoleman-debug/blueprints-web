@@ -1,10 +1,12 @@
 :root {
-  --bp-bg: #fdfcff;
-  --bp-accent: #6c5ce7;
-  --bp-accent-2: #00cec9;
-  --bp-accent-3: #fdcb6e;
-  --bp-text: #2d3436;
-  --bp-text-muted: #636e72;
+  --bp-bg: #0b1120;
+  --bp-surface: #111827;
+  --bp-accent: #22d3ee;
+  --bp-accent-soft: rgba(34, 211, 238, 0.12);
+  --bp-text: #e5e7eb;
+  --bp-text-muted: #94a3b8;
+  --bp-border: #1e293b;
+  --bp-radius-lg: 1.25rem;
 }
 
 *,

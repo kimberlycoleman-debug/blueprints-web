@@ -3,12 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --bp-bg: #fdfcff;
-  --bp-accent: #6c5ce7;
-  --bp-accent-2: #00cec9;
-  --bp-accent-3: #fdcb6e;
-  --bp-text: #2d3436;
-  --bp-text-muted: #636e72;
+  --bp-bg: #0b1120;
+  --bp-surface: #111827;
+  --bp-accent: #22d3ee;
+  --bp-accent-soft: rgba(34, 211, 238, 0.12);
+  --bp-text: #e5e7eb;
+  --bp-text-muted: #94a3b8;
+  --bp-border: #1e293b;
+  --bp-radius-lg: 1.25rem;
 }
 
 *,
@@ -25,8 +27,41 @@ body {
 
 body {
   font-family: "Inter", system-ui, -apple-system, sans-serif;
-  background: var(--bp-bg);
+  background: radial-gradient(circle at top, #0f172a 0, #0b1120 55%, #000 100%);
   color: var(--bp-text);
+}
+
+.bp-card {
+  background: var(--bp-surface);
+  border-radius: var(--bp-radius-lg);
+  border: 1px solid var(--bp-border);
+  padding: 1.75rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.bp-btn {
+  background: var(--bp-accent);
+  color: #0b1120;
+  padding: 0.65rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: 0.15s ease;
+}
+
+.bp-btn:hover {
+  background: #06b6d4;
+}
+
+.bp-h1 {
+  font-size: clamp(2.2rem, 3vw, 3rem);
+  font-weight: 700;
+  color: var(--bp-accent);
+}
+
+.bp-muted {
+  color: var(--bp-text-muted);
 }
 
 a {
