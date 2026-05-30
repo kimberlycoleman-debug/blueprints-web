@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 
 const SESSION_COOKIE = "bp_session";
 
-export function setSession(token: string) {
+export async function setSession(token: string) {
   cookies().set(SESSION_COOKIE, token, {
     httpOnly: true,
     secure: true,
@@ -13,10 +13,10 @@ export function setSession(token: string) {
   });
 }
 
-export function clearSession() {
+export async function clearSession() {
   cookies().delete(SESSION_COOKIE);
 }
 
-export function getSession() {
+export async function getSession() {
   return cookies().get(SESSION_COOKIE)?.value ?? null;
 }
