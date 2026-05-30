@@ -5,7 +5,8 @@ import { cookies } from "next/headers";
 const SESSION_COOKIE = "bp_session";
 
 export async function setSession(token: string) {
-  cookies().set(SESSION_COOKIE, token, {
+  const cookieStore = await cookies();
+  cookieStore.set(SESSION_COOKIE, token, {
     httpOnly: true,
     secure: true,
     sameSite: "lax",
@@ -14,9 +15,11 @@ export async function setSession(token: string) {
 }
 
 export async function clearSession() {
-  cookies().delete(SESSION_COOKIE);
+  const cookieStore = await cookies();
+  cookieStore.delete(SESSION_COOKIE);
 }
 
 export async function getSession() {
-  return cookies().get(SESSION_COOKIE)?.value ?? null;
+  const cookieStore = await cookies();
+  return cookieStore.get(SESSION_COOKIE)?.value ?? null;
 }
