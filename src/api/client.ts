@@ -1,4 +1,17 @@
-const OS_BASE = process.env.NEXT_PUBLIC_OS_API ?? "https://os.kymistrycollection.com/api";
+const OS_BASE =
+  process.env.NEXT_PUBLIC_OS_API ?? "https://os.kymistrycollection.com/api";
+
+async function handleResponse(res: Response) {
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(`OS API error: ${res.status} ${text}`);
+  }
+  try {
+    return await res.json();
+  } catch {
+    return null;
+  }
+}
 
 export async function osGet(path: string, options: RequestInit = {}) {
   const res = await fetch(`${OS_BASE}${path}`, {
@@ -10,14 +23,10 @@ export async function osGet(path: string, options: RequestInit = {}) {
     cache: "no-store",
   });
 
-  if (!res.ok) {
-    throw new Error(`OS API error: ${res.status}`);
-  }
-
-  return res.json();
+  return handleResponse(res);
 }
 
-export async function osPost(path: string, body: unknown, options: RequestInit = {}) {
+export async function osPost(path: string, body: any, options: RequestInit = {}) {
   const res = await fetch(`${OS_BASE}${path}`, {
     method: "POST",
     ...options,
@@ -28,9 +37,5 @@ export async function osPost(path: string, body: unknown, options: RequestInit =
     body: JSON.stringify(body),
   });
 
-  if (!res.ok) {
-    throw new Error(`OS API error: ${res.status}`);
-  }
-
-  return res.json();
+  return handleResponse(res);
 }

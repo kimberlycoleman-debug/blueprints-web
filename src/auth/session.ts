@@ -2,9 +2,10 @@
 
 import { cookies } from "next/headers";
 
-export async function setSession(token: string) {
-  const cookieStore = await cookies();
-  cookieStore.set("bp_session", token, {
+const SESSION_COOKIE = "bp_session";
+
+export function setSession(token: string) {
+  cookies().set(SESSION_COOKIE, token, {
     httpOnly: true,
     secure: true,
     sameSite: "lax",
@@ -12,12 +13,10 @@ export async function setSession(token: string) {
   });
 }
 
-export async function clearSession() {
-  const cookieStore = await cookies();
-  cookieStore.delete("bp_session");
+export function clearSession() {
+  cookies().delete(SESSION_COOKIE);
 }
 
-export async function getSession() {
-  const cookieStore = await cookies();
-  return cookieStore.get("bp_session")?.value ?? null;
+export function getSession() {
+  return cookies().get(SESSION_COOKIE)?.value ?? null;
 }
