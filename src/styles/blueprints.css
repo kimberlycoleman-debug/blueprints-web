@@ -2,34 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Blueprints Hybrid Visual System — FINAL (Locked) */
-
 :root {
   --bp-bg: #fdfcff;
-  --bp-surface: #ffffff;
-  --bp-accent: #6c5ce7; /* Purple */
-  --bp-accent-soft: rgba(108, 92, 231, 0.12);
-  --bp-accent-2: #00cec9; /* Teal */
-  --bp-accent-3: #fdcb6e; /* Gold */
+  --bp-accent: #6c5ce7;
+  --bp-accent-2: #00cec9;
+  --bp-accent-3: #fdcb6e;
   --bp-text: #2d3436;
   --bp-text-muted: #636e72;
-  --bp-radius-lg: 1.25rem;
-  --bp-radius-md: 0.875rem;
-  --bp-radius-sm: 0.5rem;
 }
 
 body {
   background: var(--bp-bg);
   color: var(--bp-text);
   font-family: "Inter", system-ui, sans-serif;
-}
-
-.bp-card {
-  background: var(--bp-surface);
-  border-radius: var(--bp-radius-lg);
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  padding: 1.75rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
 }
 
 .bp-btn {
@@ -39,7 +24,6 @@ body {
   border-radius: 999px;
   font-size: 0.85rem;
   font-weight: 600;
-  letter-spacing: 0.02em;
   transition: 0.15s ease;
 }
 
@@ -47,24 +31,10 @@ body {
   background: #5a4bd6;
 }
 
-.bp-eyebrow {
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--bp-accent);
-}
-
 .bp-h1 {
   font-size: clamp(2.2rem, 3vw, 3rem);
   font-weight: 700;
-  line-height: 1.1;
-  color: var(--bp-text);
-}
-
-.bp-h2 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--bp-text);
+  color: var(--bp-accent);
 }
 
 .bp-muted {

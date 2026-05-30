@@ -2,37 +2,24 @@ import "@/styles/blueprints.css";
 
 export default function BlueprintsLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>
-      <header
-        style={{
-          padding: "1rem 2rem",
-          borderBottom: "1px solid rgba(0,0,0,0.06)",
-          display: "flex",
-          alignItems: "center",
-          gap: "0.75rem",
-        }}
-      >
-        <img
-          src="/blueprints-icon.png"
-          alt="Blueprints Icon"
-          style={{ width: "2rem", height: "2rem" }}
-        />
-        <span className="bp-eyebrow">Blueprints Foundation App</span>
+    <div className="min-h-screen bg-[var(--bp-bg)]">
+      <header className="w-full border-b border-black/5 bg-white">
+        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <img src="/blueprints-icon.png" alt="Blueprints Icon" className="h-8 w-8" />
+            <span className="font-semibold text-[var(--bp-text)] tracking-tight">
+              Blueprints Foundation App
+            </span>
+          </div>
+        </div>
       </header>
 
-      {children}
+      <main className="max-w-5xl mx-auto px-6 py-10">{children}</main>
 
-      <footer
-        style={{
-          marginTop: "auto",
-          padding: "1.5rem 2rem",
-          textAlign: "center",
-          borderTop: "1px solid rgba(0,0,0,0.06)",
-        }}
-      >
-        <p className="bp-muted" style={{ fontSize: "0.8rem" }}>
+      <footer className="w-full border-t border-black/5 bg-white py-4">
+        <div className="max-w-5xl mx-auto px-6 text-sm text-[var(--bp-text-muted)]">
           © {new Date().getFullYear()} Solavian — Blueprints Foundation App
-        </p>
+        </div>
       </footer>
     </div>
   );

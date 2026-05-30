@@ -1,17 +1,8 @@
-import React from "react";
-
-interface BPCardProps {
-  title?: string;
-  eyebrow?: string;
-  children?: React.ReactNode;
-}
-
-export function BPCard({ title, eyebrow, children }: BPCardProps) {
+export function BPCard({ title, children }: any) {
   return (
-    <div className="bp-card">
-      {eyebrow && <p className="bp-eyebrow" style={{ marginBottom: "0.5rem" }}>{eyebrow}</p>}
-      {title && <h2 className="bp-h2" style={{ marginBottom: "0.75rem" }}>{title}</h2>}
-      {children}
+    <div className="bg-white border border-black/5 rounded-xl p-6 shadow-sm">
+      <h2 className="text-lg font-semibold text-[var(--bp-text)] mb-2">{title}</h2>
+      <div className="bp-muted">{children}</div>
     </div>
   );
 }
