@@ -9,7 +9,7 @@ export async function GET(req: Request) {
     return NextResponse.redirect(new URL("/?error=missing_token", req.url));
   }
 
-  await setSession(token);
+  setSession(token);
 
   return NextResponse.redirect(new URL("/dashboard", req.url));
 }

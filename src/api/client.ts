@@ -26,7 +26,7 @@ export async function osGet(path: string, options: RequestInit = {}) {
   return handleResponse(res);
 }
 
-export async function osPost(path: string, body: any, options: RequestInit = {}) {
+export async function osPost(path: string, body: unknown, options: RequestInit = {}) {
   const res = await fetch(`${OS_BASE}${path}`, {
     method: "POST",
     ...options,

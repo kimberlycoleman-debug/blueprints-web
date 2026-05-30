@@ -2,7 +2,7 @@ import { getSession } from "@/src/auth/session";
 import { osGet } from "@/src/api/client";
 
 export default async function DashboardPage() {
-  const token = getSession();
+  const token = await getSession();
 
   if (!token) {
     return (
@@ -10,18 +10,18 @@ export default async function DashboardPage() {
         <div className="mx-auto max-w-xl">
           <h1 className="text-2xl font-bold">Not authenticated</h1>
           <p className="mt-3 text-gray-600">
-            You don't appear to be signed in. Use your institution's Blueprints link or sign in through the Solavian OS.
+            You don&apos;t appear to be signed in. Use your institution&apos;s Blueprints link or sign in through the Solavian OS.
           </p>
         </div>
       </main>
     );
   }
 
-  let profile: any = null;
+  let profile: { name?: string } | null = null;
   try {
-    profile = await osGet("/user/profile", {
+    profile = (await osGet("/user/profile", {
       headers: { Authorization: `Bearer ${token}` },
-    });
+    })) as { name?: string } | null;
   } catch (err) {
     console.error(err);
   }
