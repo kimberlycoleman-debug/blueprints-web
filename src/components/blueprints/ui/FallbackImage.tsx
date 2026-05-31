@@ -1,18 +1,26 @@
 "use client";
 
-interface FallbackImageProps {
-  src: string;
-  alt: string;
-  className?: string;
-}
+import { useState } from "react";
 
-export function FallbackImage({ src, alt, className }: FallbackImageProps) {
+export default function FallbackImage({
+  src,
+  alt,
+  className,
+}: {
+  src: string;
+  alt?: string;
+  className?: string;
+}) {
+  const [error, setError] = useState(false);
+
+  if (error) return null;
+
   return (
     <img
       src={src}
-      alt={alt}
+      alt={alt || ""}
       className={className}
-      onError={(e) => (e.currentTarget.style.display = "none")}
+      onError={() => setError(true)}
     />
   );
 }

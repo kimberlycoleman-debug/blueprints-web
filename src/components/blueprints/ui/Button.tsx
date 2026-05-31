@@ -1,6 +1,13 @@
-export function BPButton({ children, ...props }: any) {
+"use client";
+
+import type { ButtonHTMLAttributes } from "react";
+
+export function BPButton({ children, ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
-    <button className="bp-btn" {...props}>
+    <button
+      {...props}
+      className="bp-btn"
+    >
       {children}
     </button>
   );
