@@ -5,23 +5,18 @@ export default function BlueprintsLayout({ children }: { children: React.ReactNo
   return (
     <div className="min-h-screen bg-[var(--bp-bg)] text-[var(--bp-text)]">
 
-      {/* 🔷 Banner — full-width background with text overlay */}
+      {/* 🔷 Banner — full-width background */}
       <section
         className="relative w-full border-b border-[var(--bp-border)]"
         style={{
           backgroundImage: "url('/blueprints-banner.png')",
           backgroundSize: "cover",
-          backgroundPosition: "center 20%",
+          backgroundPosition: "center 5%",
           minHeight: "320px",
         }}
       >
-        {/* dark overlay so text is readable */}
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="relative z-10 max-w-5xl mx-auto px-6 py-5 flex items-center">
-          <span className="font-semibold tracking-tight text-white text-sm">
-            Blueprints Foundation App
-          </span>
-        </div>
+        {/* dark overlay */}
+        <div className="absolute inset-0 bg-black/30" />
       </section>
 
       {/* 🔷 Main Content */}
