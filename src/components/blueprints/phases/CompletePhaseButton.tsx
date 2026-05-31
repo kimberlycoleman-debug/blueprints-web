@@ -1,12 +1,20 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import { completePhase } from "@/app/blueprints/actions/completePhase";
 
 const STORAGE_KEY = "bp_completed_phases";
 
-export default function CompletePhaseButton({ phase }: { phase: number }) {
+export default function CompletePhaseButton({
+  phase,
+  institutionId,
+}: {
+  phase: number;
+  institutionId?: string;
+}) {
   const [completed, setCompleted] = useState(false);
+  const [pending, startTransition] = useTransition();
   const router = useRouter();
 
   useEffect(() => {
@@ -21,19 +29,27 @@ export default function CompletePhaseButton({ phase }: { phase: number }) {
   }, [phase]);
 
   function handleComplete() {
-    try {
-      const stored: number[] = JSON.parse(
-        localStorage.getItem(STORAGE_KEY) || "[]"
-      );
-      if (!stored.includes(phase)) {
-        const updated = [...stored, phase];
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
-        setCompleted(true);
+    startTransition(async () => {
+      // Always write to localStorage for instant UI feedback
+      try {
+        const stored: number[] = JSON.parse(
+          localStorage.getItem(STORAGE_KEY) || "[]"
+        );
+        if (!stored.includes(phase)) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify([...stored, phase]));
+        }
+      } catch {
+        // localStorage unavailable
       }
-    } catch {
-      // localStorage unavailable
-    }
-    router.push("/blueprints/dashboard");
+
+      // If institution is tracked in DB, persist there too
+      if (institutionId) {
+        await completePhase(institutionId, phase);
+      }
+
+      setCompleted(true);
+      router.push("/blueprints/dashboard");
+    });
   }
 
   if (completed) {
@@ -47,9 +63,10 @@ export default function CompletePhaseButton({ phase }: { phase: number }) {
   return (
     <button
       onClick={handleComplete}
+      disabled={pending}
       className="bp-btn w-full py-3 text-base font-semibold mt-6"
     >
-      Mark Phase {phase} Complete
+      {pending ? "Saving..." : `Mark Phase ${phase} Complete`}
     </button>
   );
 }

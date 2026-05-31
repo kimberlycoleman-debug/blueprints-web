@@ -1,8 +1,7 @@
-import Link from "next/link";
 import BlueprintsLayout from "@/components/blueprints/Layout";
 import { StepCard } from "@/components/blueprints/onboarding/StepCard";
 import ProgressBar from "@/components/blueprints/onboarding/ProgressBar";
-import { StepButton } from "@/components/blueprints/onboarding/StepButton";
+import ConfirmButton from "@/components/blueprints/onboarding/ConfirmButton";
 
 export default function StepConfirm() {
   return (
@@ -16,9 +15,8 @@ export default function StepConfirm() {
             Review your selections and proceed to your Blueprint Dashboard.
           </p>
 
-          <Link href="/blueprints/dashboard">
-            <StepButton>Finish Onboarding</StepButton>
-          </Link>
+          {/* type/size/role defaults here — will be replaced once onboarding state is tracked */}
+          <ConfirmButton type="church" size="11-50" role="founder" />
         </StepCard>
 
       </div>
