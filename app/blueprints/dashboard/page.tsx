@@ -1,3 +1,4 @@
+import Link from "next/link";
 import BlueprintsLayout from "@/components/blueprints/Layout";
 import ProgressRing from "@/components/blueprints/dashboard/ProgressRing";
 import { PhaseCard } from "@/components/blueprints/dashboard/PhaseCard";
@@ -26,28 +27,28 @@ export default function DashboardPage() {
             title="Phase 1 — Identity"
             description="Establish institutional identity, mission, and authority alignment."
           >
-            <PhaseButton>Open Phase</PhaseButton>
+            <Link href="/blueprints/phases/1"><PhaseButton>Open Phase</PhaseButton></Link>
           </PhaseCard>
 
           <PhaseCard
             title="Phase 2 — Governance"
             description="Define leadership structure, roles, and decision-making flow."
           >
-            <PhaseButton>Open Phase</PhaseButton>
+            <Link href="/blueprints/phases/2"><PhaseButton>Open Phase</PhaseButton></Link>
           </PhaseCard>
 
           <PhaseCard
             title="Phase 3 — Formation"
             description="Develop discipleship, training, and internal development pathways."
           >
-            <PhaseButton>Open Phase</PhaseButton>
+            <Link href="/blueprints/phases/3"><PhaseButton>Open Phase</PhaseButton></Link>
           </PhaseCard>
 
           <PhaseCard
             title="Phase 4 — Witness"
             description="Establish outreach, communication, and public presence."
           >
-            <PhaseButton>Open Phase</PhaseButton>
+            <Link href="/blueprints/phases/4"><PhaseButton>Open Phase</PhaseButton></Link>
           </PhaseCard>
         </div>
 
