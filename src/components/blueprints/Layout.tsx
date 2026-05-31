@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import FallbackImage from "@/components/blueprints/ui/FallbackImage";
+import SignOutButton from "@/components/blueprints/auth/SignOutButton";
 import "@/styles/blueprints.css";
 
 export default function BlueprintsLayout({
@@ -28,6 +29,8 @@ export default function BlueprintsLayout({
             <Link href="/blueprints" className="hover:text-white transition-colors">Home</Link>
             <Link href="/blueprints/onboarding" className="hover:text-white transition-colors">Onboarding</Link>
             <Link href="/blueprints/dashboard" className="hover:text-white transition-colors">Dashboard</Link>
+            <Link href="/blueprints/login" className="hover:text-white transition-colors">Sign In</Link>
+            <SignOutButton />
           </div>
         </div>
       </nav>

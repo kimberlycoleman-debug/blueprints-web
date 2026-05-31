@@ -3,22 +3,38 @@ import { StepCard } from "@/components/blueprints/onboarding/StepCard";
 import ProgressBar from "@/components/blueprints/onboarding/ProgressBar";
 import ConfirmButton from "@/components/blueprints/onboarding/ConfirmButton";
 
-export default function StepConfirm() {
+const LABELS: Record<string, string> = {
+  church: "Church / Ministry",
+  nonprofit: "Nonprofit / Foundation",
+  business: "Business / Enterprise",
+  "1-10": "1–10 People",
+  "11-50": "11–50 People",
+  "50-250": "50–250 People",
+  "250+": "250+ People",
+  founder: "Founder / Executive",
+  admin: "Administrator",
+  member: "Team Member",
+};
+
+export default async function StepConfirm({
+  searchParams,
+}: {
+  searchParams: Promise<{ type?: string; size?: string; role?: string }>;
+}) {
+  const { type = "church", size = "11-50", role = "founder" } = await searchParams;
+
   return (
     <BlueprintsLayout>
       <div className="max-w-xl mx-auto">
-
         <ProgressBar step={80} />
-
         <StepCard title="Confirm & Continue">
-          <p className="mb-6">
-            Review your selections and proceed to your Blueprint Dashboard.
-          </p>
-
-          {/* type/size/role defaults here — will be replaced once onboarding state is tracked */}
-          <ConfirmButton type="church" size="11-50" role="founder" />
+          <div className="mb-6 space-y-2 text-sm">
+            <p><span className="text-[var(--bp-text-muted)]">Type:</span> {LABELS[type] ?? type}</p>
+            <p><span className="text-[var(--bp-text-muted)]">Size:</span> {LABELS[size] ?? size}</p>
+            <p><span className="text-[var(--bp-text-muted)]">Role:</span> {LABELS[role] ?? role}</p>
+          </div>
+          <ConfirmButton type={type} size={size} role={role} />
         </StepCard>
-
       </div>
     </BlueprintsLayout>
   );
