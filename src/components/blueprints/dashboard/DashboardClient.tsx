@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import ProgressRing from "@/components/blueprints/dashboard/ProgressRing";
 import { PhaseCard } from "@/components/blueprints/dashboard/PhaseCard";
 import { PhaseButton } from "@/components/blueprints/dashboard/PhaseButton";
@@ -39,6 +39,7 @@ const TYPE_LABELS: Record<string, string> = {
 };
 
 export default function DashboardClient() {
+  const router = useRouter();
   const [completed, setCompleted] = useState<number[]>([]);
   const [institution, setInstitution] = useState<{ type?: string; role?: string } | null>(null);
 
@@ -91,11 +92,9 @@ export default function DashboardClient() {
       <div className="grid gap-8 md:grid-cols-2">
         {PHASES.map((p) => (
           <PhaseCard key={p.id} title={p.title} description={p.description}>
-            <Link href={`/blueprints/phases/${p.id}`}>
-              <PhaseButton>
-                {completed.includes(p.id) ? "✓ Completed" : "Open Phase"}
-              </PhaseButton>
-            </Link>
+            <PhaseButton onClick={() => router.push(`/blueprints/phases/${p.id}`)}>
+              {completed.includes(p.id) ? "✓ Completed" : "Open Phase"}
+            </PhaseButton>
           </PhaseCard>
         ))}
       </div>
