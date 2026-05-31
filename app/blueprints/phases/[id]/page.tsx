@@ -1,7 +1,7 @@
 import BlueprintsLayout from "@/components/blueprints/Layout";
 import PhaseNav from "@/components/blueprints/phases/PhaseNav";
 import { PhaseSection } from "@/components/blueprints/phases/PhaseSection";
-import { PhaseAction } from "@/components/blueprints/phases/PhaseAction";
+import CompletePhaseButton from "@/components/blueprints/phases/CompletePhaseButton";
 import "@/styles/blueprints.css";
 
 type PhaseId = 1 | 2 | 3 | 4;
@@ -102,7 +102,7 @@ export default async function PhasePage({
           </PhaseSection>
         ))}
 
-        <PhaseAction>Mark Phase {id} Complete</PhaseAction>
+        <CompletePhaseButton phase={id} />
 
       </div>
     </BlueprintsLayout>
