@@ -12,7 +12,7 @@ export default function BlueprintsLayout({ children }: { children: React.ReactNo
           backgroundImage: "url('/blueprints-banner.png')",
           backgroundSize: "cover",
           backgroundPosition: "center top",
-          minHeight: "380px",
+          minHeight: "520px",
         }}
       >
         {/* dark overlay */}
