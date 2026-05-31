@@ -1,9 +1,12 @@
-import Link from "next/link";
+"use client";
+
+import { useRouter } from "next/navigation";
 import BlueprintsLayout from "@/components/blueprints/Layout";
-import { BPCard } from "@/components/blueprints/ui/Card";
 import "@/styles/blueprints.css";
 
 export default function BlueprintsHome() {
+  const router = useRouter();
+
   return (
     <BlueprintsLayout>
 
@@ -15,17 +18,23 @@ export default function BlueprintsHome() {
       </div>
 
       <div className="grid gap-8 md:grid-cols-2">
-        <Link href="/blueprints/onboarding" className="block">
-          <BPCard title="Begin Institution Onboarding">
-            <span className="bp-btn inline-block mt-2">Start Blueprint</span>
-          </BPCard>
-        </Link>
+        <button
+          onClick={() => router.push("/blueprints/onboarding")}
+          className="bp-card text-left w-full cursor-pointer hover:border-[var(--bp-accent)] border border-[var(--bp-border)] transition"
+        >
+          <h2 className="text-lg font-semibold text-[var(--bp-text)] mb-2">Begin Institution Onboarding</h2>
+          <p className="bp-muted text-sm mb-4">Set your institution type, size, and role to receive a personalized Blueprint.</p>
+          <span className="bp-btn inline-block">Start Blueprint</span>
+        </button>
 
-        <Link href="/blueprints/dashboard" className="block">
-          <BPCard title="Go to Dashboard">
-            <span className="bp-btn inline-block mt-2">Open Dashboard</span>
-          </BPCard>
-        </Link>
+        <button
+          onClick={() => router.push("/blueprints/dashboard")}
+          className="bp-card text-left w-full cursor-pointer hover:border-[var(--bp-accent)] border border-[var(--bp-border)] transition"
+        >
+          <h2 className="text-lg font-semibold text-[var(--bp-text)] mb-2">Go to Dashboard</h2>
+          <p className="bp-muted text-sm mb-4">Track your 20-phase progress and continue your institution’s Blueprint journey.</p>
+          <span className="bp-btn inline-block">Open Dashboard</span>
+        </button>
       </div>
 
     </BlueprintsLayout>

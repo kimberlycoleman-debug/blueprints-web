@@ -1,7 +1,18 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import BlueprintsLayout from "@/components/blueprints/Layout";
-import Link from "next/link";
+
+const CARDS = [
+  { href: "/blueprints/reflect/checkin", icon: "📋", title: "Weekly Check-In", body: "Answer five guided prompts to document your week and keep momentum." },
+  { href: "/blueprints/reflect/journal", icon: "📓", title: "Journal", body: "Write freely — reflections, prayers, decisions, or anything on your heart." },
+  { href: "/blueprints/reflect/history", icon: "📈", title: "Reflection History", body: "Review all your weekly check-ins and trace your institution\u2019s longitudinal growth." },
+  { href: "/blueprints/reflect/journal/history", icon: "🗂️", title: "Journal Archive", body: "Browse all journal entries and search your institutional narrative." },
+];
 
 export default function ReflectHomePage() {
+  const router = useRouter();
+
   return (
     <BlueprintsLayout>
       <div className="max-w-3xl mx-auto">
@@ -11,29 +22,17 @@ export default function ReflectHomePage() {
         </p>
 
         <div className="grid md:grid-cols-2 gap-6">
-          <Link href="/blueprints/reflect/checkin" className="bp-card border border-[var(--bp-border)] hover:border-[var(--bp-accent)] transition block">
-            <p className="text-2xl mb-3">📋</p>
-            <h2 className="text-lg font-bold mb-2">Weekly Check-In</h2>
-            <p className="bp-muted text-sm">Answer five guided prompts to document your week and keep momentum.</p>
-          </Link>
-
-          <Link href="/blueprints/reflect/journal" className="bp-card border border-[var(--bp-border)] hover:border-[var(--bp-accent)] transition block">
-            <p className="text-2xl mb-3">📓</p>
-            <h2 className="text-lg font-bold mb-2">Journal</h2>
-            <p className="bp-muted text-sm">Write freely — reflections, prayers, decisions, or anything on your heart.</p>
-          </Link>
-
-          <Link href="/blueprints/reflect/history" className="bp-card border border-[var(--bp-border)] hover:border-[var(--bp-accent)] transition block">
-            <p className="text-2xl mb-3">📈</p>
-            <h2 className="text-lg font-bold mb-2">Reflection History</h2>
-            <p className="bp-muted text-sm">Review all your weekly check-ins and trace your institution&apos;s longitudinal growth.</p>
-          </Link>
-
-          <Link href="/blueprints/reflect/journal/history" className="bp-card border border-[var(--bp-border)] hover:border-[var(--bp-accent)] transition block">
-            <p className="text-2xl mb-3">🗂️</p>
-            <h2 className="text-lg font-bold mb-2">Journal Archive</h2>
-            <p className="bp-muted text-sm">Browse all journal entries and search your institutional narrative.</p>
-          </Link>
+          {CARDS.map((c) => (
+            <button
+              key={c.href}
+              onClick={() => router.push(c.href)}
+              className="bp-card text-left w-full cursor-pointer hover:border-[var(--bp-accent)] border border-[var(--bp-border)] transition"
+            >
+              <p className="text-2xl mb-3">{c.icon}</p>
+              <h2 className="text-lg font-bold mb-2">{c.title}</h2>
+              <p className="bp-muted text-sm">{c.body}</p>
+            </button>
+          ))}
         </div>
       </div>
     </BlueprintsLayout>
