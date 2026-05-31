@@ -1,3 +1,7 @@
+"use client";
+
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import BlueprintsLayout from "@/components/blueprints/Layout";
 import { StepCard } from "@/components/blueprints/onboarding/StepCard";
 import ProgressBar from "@/components/blueprints/onboarding/ProgressBar";
@@ -16,12 +20,11 @@ const LABELS: Record<string, string> = {
   member: "Team Member",
 };
 
-export default async function StepConfirm({
-  searchParams,
-}: {
-  searchParams: Promise<{ type?: string; size?: string; role?: string }>;
-}) {
-  const { type = "church", size = "11-50", role = "founder" } = await searchParams;
+function StepConfirmInner() {
+  const searchParams = useSearchParams();
+  const type = searchParams.get("type") ?? "church";
+  const size = searchParams.get("size") ?? "11-50";
+  const role = searchParams.get("role") ?? "founder";
 
   return (
     <BlueprintsLayout>
@@ -37,5 +40,13 @@ export default async function StepConfirm({
         </StepCard>
       </div>
     </BlueprintsLayout>
+  );
+}
+
+export default function StepConfirm() {
+  return (
+    <Suspense>
+      <StepConfirmInner />
+    </Suspense>
   );
 }

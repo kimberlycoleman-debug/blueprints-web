@@ -1,8 +1,10 @@
+"use client";
+
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import BlueprintsLayout from "@/components/blueprints/Layout";
 import { StepCard } from "@/components/blueprints/onboarding/StepCard";
 import ProgressBar from "@/components/blueprints/onboarding/ProgressBar";
-import { StepButton } from "@/components/blueprints/onboarding/StepButton";
-import Link from "next/link";
 
 const SIZES = [
   { label: "1–10 People", value: "1-10" },
@@ -11,12 +13,11 @@ const SIZES = [
   { label: "250+ People", value: "250+" },
 ];
 
-export default async function StepSize({
-  searchParams,
-}: {
-  searchParams: Promise<{ type?: string }>;
-}) {
-  const { type = "" } = await searchParams;
+function StepSizeInner() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const type = searchParams.get("type") ?? "";
+
   return (
     <BlueprintsLayout>
       <div className="max-w-xl mx-auto">
@@ -25,13 +26,25 @@ export default async function StepSize({
           <p className="mb-6">Select the approximate size of your organization.</p>
           <div className="grid gap-4">
             {SIZES.map((s) => (
-              <Link key={s.value} href={`/blueprints/onboarding/steps/role?type=${type}&size=${s.value}`}>
-                <StepButton>{s.label}</StepButton>
-              </Link>
+              <button
+                key={s.value}
+                onClick={() => router.push(`/blueprints/onboarding/steps/role?type=${type}&size=${s.value}`)}
+                className="bp-btn w-full text-center py-3 text-base font-semibold"
+              >
+                {s.label}
+              </button>
             ))}
           </div>
         </StepCard>
       </div>
     </BlueprintsLayout>
+  );
+}
+
+export default function StepSize() {
+  return (
+    <Suspense>
+      <StepSizeInner />
+    </Suspense>
   );
 }

@@ -1,8 +1,10 @@
+"use client";
+
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import BlueprintsLayout from "@/components/blueprints/Layout";
 import { StepCard } from "@/components/blueprints/onboarding/StepCard";
 import ProgressBar from "@/components/blueprints/onboarding/ProgressBar";
-import { StepButton } from "@/components/blueprints/onboarding/StepButton";
-import Link from "next/link";
 
 const ROLES = [
   { label: "Founder / Executive", value: "founder" },
@@ -10,12 +12,12 @@ const ROLES = [
   { label: "Team Member", value: "member" },
 ];
 
-export default async function StepRole({
-  searchParams,
-}: {
-  searchParams: Promise<{ type?: string; size?: string }>;
-}) {
-  const { type = "", size = "" } = await searchParams;
+function StepRoleInner() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const type = searchParams.get("type") ?? "";
+  const size = searchParams.get("size") ?? "";
+
   return (
     <BlueprintsLayout>
       <div className="max-w-xl mx-auto">
@@ -24,13 +26,25 @@ export default async function StepRole({
           <p className="mb-6">Tell us your position within the organization.</p>
           <div className="grid gap-4">
             {ROLES.map((r) => (
-              <Link key={r.value} href={`/blueprints/onboarding/steps/confirm?type=${type}&size=${size}&role=${r.value}`}>
-                <StepButton>{r.label}</StepButton>
-              </Link>
+              <button
+                key={r.value}
+                onClick={() => router.push(`/blueprints/onboarding/steps/confirm?type=${type}&size=${size}&role=${r.value}`)}
+                className="bp-btn w-full text-center py-3 text-base font-semibold"
+              >
+                {r.label}
+              </button>
             ))}
           </div>
         </StepCard>
       </div>
     </BlueprintsLayout>
+  );
+}
+
+export default function StepRole() {
+  return (
+    <Suspense>
+      <StepRoleInner />
+    </Suspense>
   );
 }

@@ -1,8 +1,9 @@
+"use client";
+
+import { useRouter } from "next/navigation";
 import BlueprintsLayout from "@/components/blueprints/Layout";
 import { StepCard } from "@/components/blueprints/onboarding/StepCard";
 import ProgressBar from "@/components/blueprints/onboarding/ProgressBar";
-import { StepButton } from "@/components/blueprints/onboarding/StepButton";
-import Link from "next/link";
 
 const TYPES = [
   { label: "Church / Ministry", value: "church" },
@@ -11,6 +12,7 @@ const TYPES = [
 ];
 
 export default function StepType() {
+  const router = useRouter();
   return (
     <BlueprintsLayout>
       <div className="max-w-xl mx-auto">
@@ -19,9 +21,13 @@ export default function StepType() {
           <p className="mb-6">Choose the category that best describes your organization.</p>
           <div className="grid gap-4">
             {TYPES.map((t) => (
-              <Link key={t.value} href={`/blueprints/onboarding/steps/size?type=${t.value}`}>
-                <StepButton>{t.label}</StepButton>
-              </Link>
+              <button
+                key={t.value}
+                onClick={() => router.push(`/blueprints/onboarding/steps/size?type=${t.value}`)}
+                className="bp-btn w-full text-center py-3 text-base font-semibold"
+              >
+                {t.label}
+              </button>
             ))}
           </div>
         </StepCard>
