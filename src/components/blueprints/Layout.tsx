@@ -24,10 +24,10 @@ export default function BlueprintsLayout({
             </span>
           </div>
 
-          <div className="flex items-center gap-6 text-[var(--bp-text-muted)] text-sm">
-            <Link href="/blueprints">Home</Link>
-            <Link href="/blueprints/onboarding">Onboarding</Link>
-            <Link href="/blueprints/dashboard">Dashboard</Link>
+          <div className="flex items-center space-x-6 text-[var(--bp-text-muted)] text-sm">
+            <Link href="/blueprints" className="hover:text-white transition-colors">Home</Link>
+            <Link href="/blueprints/onboarding" className="hover:text-white transition-colors">Onboarding</Link>
+            <Link href="/blueprints/dashboard" className="hover:text-white transition-colors">Dashboard</Link>
           </div>
         </div>
       </nav>
