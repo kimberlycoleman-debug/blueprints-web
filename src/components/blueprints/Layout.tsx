@@ -6,23 +6,27 @@ export default function BlueprintsLayout({ children }: { children: React.ReactNo
   return (
     <div className="min-h-screen bg-[var(--bp-bg)] text-[var(--bp-text)]">
 
-      {/* TOP NAV */}
-      <nav className="w-full border-b border-[var(--bp-border)] bg-[var(--bp-surface)]">
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <FallbackImage src="/blueprints-banner.png" alt="" className="h-10 w-auto bp-banner-glow" />
-            <span className="font-semibold tracking-tight text-[var(--bp-text)]">
-              Blueprints Foundation App
-            </span>
-          </div>
+      {/* HERO BANNER — full-width background with nav overlay */}
+      <header
+        className="relative w-full"
+        style={{
+          backgroundImage: "url('/blueprints-banner.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center top",
+          minHeight: "380px",
+        }}
+      >
+        <div className="absolute inset-0 bg-black/30" />
 
-          <div className="flex items-center gap-6 text-[var(--bp-text-muted)] text-sm">
-            <Link href="/blueprints">Home</Link>
-            <Link href="/blueprints/onboarding">Onboarding</Link>
-            <Link href="/blueprints/dashboard">Dashboard</Link>
+        {/* Nav links pinned to top of hero */}
+        <nav className="relative z-10 w-full border-b border-white/10">
+          <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-end gap-6 text-sm text-white/80">
+            <Link href="/blueprints" className="hover:text-white transition-colors">Home</Link>
+            <Link href="/blueprints/onboarding" className="hover:text-white transition-colors">Onboarding</Link>
+            <Link href="/blueprints/dashboard" className="hover:text-white transition-colors">Dashboard</Link>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </header>
 
       {/* MAIN CONTENT */}
       <main className="max-w-5xl mx-auto px-6 py-16">
