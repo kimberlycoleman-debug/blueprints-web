@@ -22,11 +22,11 @@ export default async function CohortsPage() {
           <div>
             <h2 className="text-lg font-semibold mb-6">Active Cohorts</h2>
             {error && <p className="text-red-400 text-sm">{error}</p>}
-            {!error && cohorts.length === 0 && (
+            {!error && (cohorts ?? []).length === 0 && (
               <p className="bp-muted">No cohorts yet. Create one to get started.</p>
             )}
             <div className="space-y-4">
-              {cohorts.map((c) => (
+              {(cohorts ?? []).map((c) => (
                 <Link
                   key={c.id}
                   href={`/blueprints/cohorts/${c.id}`}

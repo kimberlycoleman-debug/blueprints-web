@@ -67,7 +67,7 @@ export async function getCohortDetail(cohortId: string) {
   }
 
   const enrichedMembers = (members ?? []).map((m) => {
-    const inst = m.institutions as { id: string; name: string | null; type: string | null; role: string | null } | null;
+    const inst = (m.institutions as unknown) as { id: string; name: string | null; type: string | null; role: string | null } | null;
     const rows = progress.filter((p) => p.institution_id === m.institution_id);
     const completedCount = rows.filter((r) => r.completed).length;
     return {

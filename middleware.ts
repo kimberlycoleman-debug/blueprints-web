@@ -9,7 +9,3 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: [],
 };
-
-export const config = {
-  matcher: ["/blueprints/dashboard/:path*", "/blueprints/phases/:path*"],
-};
