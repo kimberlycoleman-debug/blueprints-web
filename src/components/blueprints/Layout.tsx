@@ -11,8 +11,8 @@ export default function BlueprintsLayout({ children }: { children: React.ReactNo
         style={{
           backgroundImage: "url('/blueprints-banner.png')",
           backgroundSize: "cover",
-          backgroundPosition: "center top",
-          minHeight: "220px",
+          backgroundPosition: "center 20%",
+          minHeight: "320px",
         }}
       >
         {/* dark overlay so text is readable */}
