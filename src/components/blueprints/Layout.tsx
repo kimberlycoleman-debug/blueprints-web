@@ -1,28 +1,35 @@
+import Link from "next/link";
 import "@/styles/blueprints.css";
 import { FallbackImage } from "@/components/blueprints/ui/FallbackImage";
 
 export default function BlueprintsLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-[var(--bp-bg)] text-[var(--bp-text)] flex flex-col">
+    <div className="min-h-screen bg-[var(--bp-bg)] text-[var(--bp-text)]">
 
-      {/* 🔷 Banner — full-width background */}
-      <section
-        className="relative w-full border-b border-[var(--bp-border)]"
-        style={{
-          backgroundImage: "url('/blueprints-banner.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center top",
-          minHeight: "520px",
-        }}
-      >
-        {/* dark overlay */}
-        <div className="absolute inset-0 bg-black/30" />
-      </section>
+      {/* TOP NAV */}
+      <nav className="w-full border-b border-[var(--bp-border)] bg-[var(--bp-surface)]">
+        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <FallbackImage src="/blueprints-banner.png" alt="" className="h-10 w-auto bp-banner-glow" />
+            <span className="font-semibold tracking-tight text-[var(--bp-text)]">
+              Blueprints Foundation App
+            </span>
+          </div>
 
-      {/* 🔷 Main Content */}
-      <main className="max-w-5xl mx-auto px-6 py-10">{children}</main>
+          <div className="flex items-center gap-6 text-[var(--bp-text-muted)] text-sm">
+            <Link href="/blueprints">Home</Link>
+            <Link href="/blueprints/onboarding">Onboarding</Link>
+            <Link href="/blueprints/dashboard">Dashboard</Link>
+          </div>
+        </div>
+      </nav>
 
-      {/* 🔷 Outro Screen */}
+      {/* MAIN CONTENT */}
+      <main className="max-w-5xl mx-auto px-6 py-16">
+        {children}
+      </main>
+
+      {/* OUTRO */}
       <section className="w-full border-t border-[var(--bp-border)] bg-[var(--bp-surface)] py-16 mt-20">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <FallbackImage src="/blueprints-outro.png" alt="" className="mx-auto mb-8 w-[420px] bp-outro-glow" />
