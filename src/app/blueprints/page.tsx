@@ -2,6 +2,7 @@ import BlueprintsLayout from "@/components/blueprints/Layout";
 import { BPButton } from "@/components/blueprints/ui/Button";
 import { BPCard } from "@/components/blueprints/ui/Card";
 import "@/styles/blueprints.css";
+import Link from "next/link";
 
 export default function BlueprintsHome() {
   return (
@@ -15,11 +16,15 @@ export default function BlueprintsHome() {
 
       <div className="grid gap-6 md:grid-cols-2">
         <BPCard title="Begin Institution Onboarding">
-          <BPButton>Start Blueprint</BPButton>
+          <Link href="/blueprints/onboarding">
+            <BPButton>Start Blueprint</BPButton>
+          </Link>
         </BPCard>
 
         <BPCard title="Go to Dashboard">
-          <BPButton>Open Dashboard</BPButton>
+          <Link href="/blueprints/dashboard">
+            <BPButton>Open Dashboard</BPButton>
+          </Link>
         </BPCard>
       </div>
     </BlueprintsLayout>
