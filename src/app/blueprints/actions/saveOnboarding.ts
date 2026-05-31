@@ -1,6 +1,7 @@
 "use server";
 
 import { createClient } from "@/utils/supabase/server";
+import { emitOSEvent } from "@/app/blueprints/actions/os-sync";
 
 export async function saveOnboarding(data: {
   type: string;
@@ -21,9 +22,9 @@ export async function saveOnboarding(data: {
 
   if (error) throw error;
 
-  const phases = [1, 2, 3, 4].map((p) => ({
+  const phases = Array.from({ length: 20 }, (_, i) => ({
     institution_id: institution.id,
-    phase: p,
+    phase: i + 1,
     completed: false,
   }));
 
@@ -32,6 +33,13 @@ export async function saveOnboarding(data: {
     .insert(phases);
 
   if (progressError) throw progressError;
+
+  // Emit OS identity event for institution creation
+  await emitOSEvent({
+    institutionId: institution.id,
+    eventType: "institution_created",
+    payload: { type: data.type, size: data.size, role: data.role },
+  });
 
   return institution.id as string;
 }

@@ -29,6 +29,10 @@ export default function BlueprintsLayout({
             <Link href="/blueprints" className="hover:text-white transition-colors">Home</Link>
             <Link href="/blueprints/onboarding" className="hover:text-white transition-colors">Onboarding</Link>
             <Link href="/blueprints/dashboard" className="hover:text-white transition-colors">Dashboard</Link>
+            <Link href="/blueprints/reflect" className="hover:text-white transition-colors">Reflect</Link>
+            <Link href="/blueprints/cohorts" className="hover:text-white transition-colors">Cohorts</Link>
+            <Link href="/blueprints/admin" className="hover:text-white transition-colors">Admin</Link>
+            <Link href="/blueprints/os" className="hover:text-white transition-colors">OS</Link>
             <Link href="/blueprints/login" className="hover:text-white transition-colors">Sign In</Link>
             <SignOutButton />
           </div>

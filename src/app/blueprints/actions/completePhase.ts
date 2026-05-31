@@ -1,6 +1,7 @@
 "use server";
 
 import { createClient } from "@/utils/supabase/server";
+import { emitOSEvent } from "@/app/blueprints/actions/os-sync";
 
 export async function completePhase(institutionId: string, phase: number) {
   const supabase = await createClient();
@@ -12,6 +13,12 @@ export async function completePhase(institutionId: string, phase: number) {
     .eq("phase", phase);
 
   if (error) throw error;
+
+  await emitOSEvent({
+    institutionId,
+    eventType: "phase_completed",
+    payload: { phase },
+  });
 
   return true;
 }
