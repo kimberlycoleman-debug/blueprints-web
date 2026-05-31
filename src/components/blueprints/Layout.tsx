@@ -17,7 +17,7 @@ export default function BlueprintsLayout({
           <div className="flex items-center gap-3">
             <FallbackImage
               src="/blueprints-banner.png"
-              className="h-10 w-auto bp-banner-glow"
+              className="h-10 w-auto max-w-[180px] object-contain bp-banner-glow"
             />
             <span className="font-semibold tracking-tight text-[var(--bp-text)]">
               Blueprints Foundation App
