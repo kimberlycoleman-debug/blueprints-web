@@ -23,9 +23,9 @@ export default function BlueprintsLayout({ children }: { children: React.ReactNo
       <main className="max-w-5xl mx-auto px-6 py-10">{children}</main>
 
       {/* 🔷 Outro Screen */}
-      <section className="w-full border-t border-[var(--bp-border)] bg-[var(--bp-surface)] py-10 mt-12">
+      <section className="w-full border-t border-[var(--bp-border)] bg-[var(--bp-surface)] py-16 mt-20">
         <div className="max-w-5xl mx-auto px-6 text-center">
-          <FallbackImage src="/blueprints-outro.png" alt="" className="mx-auto mb-6 w-full max-w-lg bp-outro-glow" />
+          <FallbackImage src="/blueprints-outro.png" alt="" className="mx-auto mb-8 w-[420px] bp-outro-glow" />
           <p className="text-sm text-[var(--bp-text-muted)]">
             Matthew 28:19–20 · Formation · Governance · Witness
           </p>
