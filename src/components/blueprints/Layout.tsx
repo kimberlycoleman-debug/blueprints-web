@@ -3,7 +3,7 @@ import { FallbackImage } from "@/components/blueprints/ui/FallbackImage";
 
 export default function BlueprintsLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-[var(--bp-bg)] text-[var(--bp-text)]">
+    <div className="min-h-screen bg-[var(--bp-bg)] text-[var(--bp-text)] flex flex-col">
 
       {/* 🔷 Banner — full-width background */}
       <section
